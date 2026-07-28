@@ -151,7 +151,50 @@ Customer Analysis
 Order Status Analysis
 ## How to Run
 
+Prerequisites
+Docker Desktop (or Docker Engine + Docker Compose)
+Git
+1. Clone the repository
+git clone https://github.com/<your-username>/<repository-name>.git
+cd <repository-name>
+2. Configure environment variables
+
+Create a .env file in the project root using the following template:
+
+# PostgreSQL
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=olist
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+
+# ClickHouse
+CLICKHOUSE_HOST=clickhouse
+CLICKHOUSE_PORT=8123
+CLICKHOUSE_DB=default
+CLICKHOUSE_USER=default
+CLICKHOUSE_PASSWORD=
+
+Update the values if you want to use different credentials.
+
+3. Build and run the pipeline
 docker compose up --build
+
+This command will automatically:
+
+Start PostgreSQL
+Start ClickHouse
+Load raw data into PostgreSQL
+Perform data quality validation
+Load transformed data into ClickHouse
+Build the dimensional warehouse
+Execute warehouse validation
+4. Stop the services
+docker compose down
+
+To remove the database volumes as well:
+
+docker compose down -v
 
 # Final Project Structure
 
