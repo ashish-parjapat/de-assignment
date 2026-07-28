@@ -1,25 +1,150 @@
 # Data Engineering Assignment
 
-This project implements a production-style data pipeline using the Brazilian E-Commerce (Olist) dataset.
+## Project Overview
 
-## Tech Stack
+## Architecture
 
-- Python
-- PostgreSQL
-- ClickHouse
-- Docker
-- SQLAlchemy
-- Git
+                          CSV Files
+                              │
+                              ▼
+                 Generic CSV Loader (Python)
+                              │
+                              ▼
+                    PostgreSQL (Raw Layer)
+                              │
+                              ▼
+                   Raw Data Validation
+                              │
+                              ▼
+               ClickHouse Staging Layer
+                              │
+                              ▼
+             Warehouse Transformation
+                              │
+                              ▼
+                  Star Schema Warehouse
+        ┌──────────────┬──────────────┐
+        │              │              │
+        ▼              ▼              ▼
+  dim_customer   dim_product   dim_seller
+        │              │              │
+        └──────────────┴──────────────┘
+                      │
+                      ▼
+                 dim_date
+                      │
+                      ▼
+                  fact_sales
+                      │
+                      ▼
+            Warehouse Validation
+                      │
+                      ▼
+             Analytical SQL Reports
+
+## Technology Stack
+
+Python 3.13
+
+PostgreSQL
+
+ClickHouse
+
+Docker & Docker Compose
+
+SQL
+
+Git
+
+Bash
 
 ## Project Structure
 
-```
-data/           # Raw and processed datasets
-pipeline/       # ETL pipeline code
-sql/            # SQL scripts
-tests/          # Test cases
-docker/         # Docker-related files
-docs/           # Project documentation
-```
+## Pipeline Flow
 
-The project will be developed incrementally with clear Git commit history.
+CSV Files
+
+↓
+
+Raw PostgreSQL
+
+↓
+
+Raw Validation
+
+↓
+
+ClickHouse Staging
+
+↓
+
+Warehouse (Star Schema)
+
+↓
+
+Warehouse Validation
+
+↓
+
+Business Analytics
+
+## Data Warehouse Design
+Dimensions
+dim_customer
+dim_product
+dim_seller
+dim_date
+Fact
+
+fact_sales
+
+Grain:
+
+One record per order item.
+
+## Data Validation
+Raw Layer
+NULL checks
+Duplicate checks
+Row count validation
+Warehouse
+Primary key validation
+Duplicate key validation
+Revenue validation
+Referential integrity
+Row count reconciliation
+Payment anomaly warning
+
+## Business Analytics
+Monthly Revenue
+Top Product Categories
+Revenue by State
+Top Sellers
+Payment Analysis
+Delivery Performance
+Customer Analysis
+Order Status Analysis
+## How to Run
+
+
+
+# Final Project Structure
+
+de-assignment/
+
+├── data/
+├── docs/
+├── images/
+├── pipeline/
+│   ├── ingestion/
+│   ├── raw/
+│   ├── staging/
+│   └── warehouse/
+├── sql/
+│   ├── warehouse/
+│   └── analytics/
+├── docker-compose.yml
+├── README.md
+└── requirements.txt
+
+## Future Improvements
