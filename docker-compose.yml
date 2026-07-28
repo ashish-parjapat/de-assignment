@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
@@ -56,6 +54,33 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: de_pipeline
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_PORT: 8123
+
+    volumes:
+      - .:/app
+
+    restart: "no"
 
 volumes:
   postgres_data:
