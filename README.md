@@ -178,6 +178,8 @@ CLICKHOUSE_PASSWORD=
 Update the values if you want to use different credentials.
 
 3. Build and run the pipeline
+
+   
 docker compose up --build
 
 This command will automatically:
