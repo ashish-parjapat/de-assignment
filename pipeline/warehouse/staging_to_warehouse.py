@@ -129,8 +129,15 @@ def build_fact_sales():
 ) p
 ON oi.order_id = p.order_id
 
-    LEFT JOIN staging.order_reviews r
-        ON oi.order_id = r.order_id
+    LEFT JOIN
+(
+    SELECT
+        order_id,
+        max(review_score) AS review_score
+    FROM staging.order_reviews
+    GROUP BY order_id
+) r
+ON oi.order_id = r.order_id
     """
 
     return client.query_df(query)
