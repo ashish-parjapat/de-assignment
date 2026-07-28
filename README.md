@@ -2,6 +2,31 @@
 
 ## Project Overview
 
+# Data Engineering Pipeline with PostgreSQL, ClickHouse & Docker
+
+An end-to-end Data Engineering pipeline built using Python, PostgreSQL, ClickHouse, SQLAlchemy, and Docker. The project demonstrates a modern ETL workflow that ingests raw CSV data, performs data quality validation, transforms it into a staging layer, builds a dimensional star schema for analytics, and validates the warehouse before serving analytical queries.
+
+## Key Features
+
+* End-to-end ETL pipeline with automated execution using Docker Compose.
+* Generic CSV ingestion into PostgreSQL Raw Layer.
+* Data quality validation framework with configurable validation rules.
+* High-performance staging layer built on ClickHouse.
+* Star schema warehouse with fact and dimension tables.
+* Automated warehouse validation for data integrity and consistency.
+* Analytics-ready SQL queries for business insights.
+* Environment-based configuration using `.env`.
+* Modular, scalable, and production-oriented project structure.
+
+## Tech Stack
+
+* **Language:** Python
+* **Databases:** PostgreSQL, ClickHouse
+* **Libraries:** SQLAlchemy, Pandas, ClickHouse Connect
+* **Containerization:** Docker & Docker Compose
+* **Architecture:** ETL • Data Quality • Star Schema • Data Warehouse
+
+
 ## Architecture
 
                           CSV Files
