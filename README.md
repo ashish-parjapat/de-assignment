@@ -126,7 +126,7 @@ Customer Analysis
 Order Status Analysis
 ## How to Run
 
-
+docker compose up --build
 
 # Final Project Structure
 
